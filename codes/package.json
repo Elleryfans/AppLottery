@@ -41,9 +41,15 @@
     },
     "nsis": {
       "oneClick": false,
+      "perMachine": false,
       "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AppLottery - 赛博朋克抽奖",
+      "runAfterFinish": true,
       "installerIcon": "assets/icons/icon.ico",
-      "uninstallerIcon": "assets/icons/icon.ico"
+      "uninstallerIcon": "assets/icons/icon.ico",
+      "installerHeaderIcon": "assets/icons/icon.ico"
     }
   },
   "dependencies": {
