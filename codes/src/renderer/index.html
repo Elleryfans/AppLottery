@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:; connect-src 'self'">
+  <title>AppLottery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app-container">
+    <div id="guide-text" style="display:none;">拖拽 .exe / .lnk 到此处<br>或点击「管理应用」添加</div>
+    <div id="scene-area"></div>
+    <div id="stats">已参与：<span id="app-count">0</span> 个应用</div>
+    <div id="button-bar">
+      <button id="btn-start">开始抽奖</button>
+      <button id="btn-cancel" style="display:none;">取消</button>
+      <button id="btn-manage">管理应用</button>
+      <button id="btn-exit">退出</button>
+    </div>
+  </div>
+
+  <!-- Management Modal -->
+  <div id="modal-overlay">
+    <div id="modal">
+      <h2>管理应用</h2>
+      <button id="modal-close">&times;</button>
+
+      <!-- Search system apps -->
+      <div id="search-section">
+        <input type="text" id="search-input" placeholder="输入程序名搜索...">
+        <div id="search-results"></div>
+      </div>
+
+      <!-- Current lottery pool -->
+      <h3>抽奖池 (<span id="modal-count">0</span>/30)</h3>
+      <div id="modal-app-list"></div>
+      <button id="btn-add-app">手动选择文件</button>
+      <button id="btn-modal-cancel">取消</button>
+    </div>
+  </div>
+
+  <!-- Winner reveal overlay -->
+  <div id="winner-overlay">
+    <div id="winner-card">
+      <img id="winner-icon" src="" alt="">
+      <div id="winner-name"></div>
+    </div>
+  </div>
+
+  <!-- Error Toast -->
+  <div id="error-toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

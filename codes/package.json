@@ -1,0 +1,57 @@
+{
+  "name": "applottery",
+  "version": "1.0.0",
+  "description": "赛博朋克风格桌面应用抽奖工具",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "jest --passWithNoTests",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "build": "electron-builder"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "electron": "^25.0.0",
+    "electron-builder": "latest",
+    "eslint": "latest",
+    "jest": "latest",
+    "jest-environment-jsdom": "^30.4.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "build": {
+    "appId": "com.applottery.desktop",
+    "productName": "AppLottery",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icons/icon.ico",
+      "uninstallerIcon": "assets/icons/icon.ico"
+    }
+  },
+  "dependencies": {
+    "cannon-es": "^0.20.0",
+    "canvas": "^3.2.3",
+    "electron-store": "^8.2.0",
+    "file-icon": "^6.0.0",
+    "lnk": "^1.1.0",
+    "three": "^0.184.0"
+  }
+}

@@ -1,0 +1,410 @@
+/* ============================================
+   AppLottery - 赛博朋克主题样式
+   Story 5.1: 全局视觉基调
+   ============================================ */
+
+/* --- CSS Variables --- */
+:root {
+  --color-bg: #0a0a0f;
+  --color-cyan: #00ffff;
+  --color-magenta: #ff00ff;
+  --color-purple: #9d00ff;
+  --color-dark: #1a1a2e;
+  --color-text: #c0c0e0;
+  --font-mono: 'Courier New', 'Consolas', 'Monaco', monospace;
+  --glow-cyan: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.2);
+  --glow-purple: 0 0 10px rgba(157, 0, 255, 0.5), 0 0 30px rgba(157, 0, 255, 0.2);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* --- Main Container --- */
+#app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* --- Neon Border Frame --- */
+#app-container::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px solid var(--color-cyan);
+  border-radius: 4px;
+  box-shadow: var(--glow-cyan), inset 0 0 30px rgba(0, 255, 255, 0.05);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* --- 3D Scene Area --- */
+#scene-area {
+  flex: 1;
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#scene-area canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* --- Guide Text --- */
+#guide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-cyan);
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px var(--color-cyan), 0 0 30px var(--color-cyan);
+  z-index: 10;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+/* --- Stats --- */
+#stats {
+  padding: 8px 20px;
+  color: var(--color-cyan);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px var(--color-cyan);
+}
+
+/* --- Button Bar --- */
+#button-bar {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  z-index: 10;
+}
+
+button {
+  background: transparent;
+  border: 1px solid var(--color-cyan);
+  color: var(--color-cyan);
+  padding: 10px 24px;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
+}
+
+button:hover:not(:disabled) {
+  box-shadow: var(--glow-cyan);
+  text-shadow: 0 0 5px var(--color-cyan);
+  background: rgba(0, 255, 255, 0.05);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+#btn-cancel {
+  border-color: var(--color-magenta);
+  color: var(--color-magenta);
+}
+
+#btn-cancel:hover {
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.2);
+  background: rgba(255, 0, 255, 0.05);
+}
+
+#btn-exit {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+#btn-exit:hover {
+  box-shadow: var(--glow-purple);
+  background: rgba(157, 0, 255, 0.05);
+}
+
+/* --- Modal Overlay --- */
+#modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-overlay.active {
+  display: flex;
+}
+
+#modal {
+  background: var(--color-dark);
+  border: 2px solid var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+  padding: 30px;
+  min-width: 400px;
+  max-width: 600px;
+  max-height: 70vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+#modal h2 {
+  color: var(--color-cyan);
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+#modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--color-cyan);
+  font-size: 1.5rem;
+  cursor: pointer;
+  min-width: auto;
+  padding: 5px 10px;
+}
+
+#modal-close:hover {
+  text-shadow: 0 0 10px var(--color-cyan);
+}
+
+/* --- App List in Modal --- */
+#app-list .app-item,
+#modal-app-list .app-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  margin-bottom: 8px;
+}
+
+#app-list .app-item:hover,
+#modal-app-list .app-item:hover {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+#app-list .app-icon,
+#modal-app-list .app-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+#app-list .app-name,
+#modal-app-list .app-name {
+  flex: 1;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+#app-list .app-name:hover,
+#modal-app-list .app-name:hover {
+  color: var(--color-cyan);
+  text-decoration: underline;
+}
+
+#app-list .edit-btn,
+#modal-app-list .edit-btn {
+  min-width: auto;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+#app-list .edit-btn:hover,
+#modal-app-list .edit-btn:hover {
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+#app-list .delete-btn,
+#modal-app-list .delete-btn {
+  min-width: auto;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-color: var(--color-magenta);
+  color: var(--color-magenta);
+}
+
+/* --- Search Section --- */
+#search-section {
+  margin-bottom: 16px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+#search-input:focus {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+#search-results {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+
+.search-result-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--color-text);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+  transition: all 0.15s;
+}
+
+.search-result-item:hover {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--color-cyan);
+}
+
+.search-empty {
+  padding: 12px;
+  color: var(--color-text);
+  text-align: center;
+  opacity: 0.6;
+}
+
+/* --- Winner Overlay --- */
+#winner-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10, 10, 15, 0.95);
+  z-index: 500;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#winner-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+#winner-card {
+  text-align: center;
+  animation: scaleIn 0.5s ease;
+}
+
+#winner-icon {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 0 60px rgba(0, 255, 255, 0.5), 0 0 120px rgba(0, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+#winner-name {
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  text-shadow: 0 0 20px var(--color-cyan);
+  letter-spacing: 3px;
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Error Toast --- */
+#error-toast {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--color-magenta);
+  background: var(--color-dark);
+  color: var(--color-magenta);
+  padding: 12px 24px;
+  z-index: 300;
+  font-family: var(--font-mono);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+#error-toast.show {
+  display: block;
+  animation: fadeInOut 3s forwards;
+}
+
+/* --- Drag & Drop --- */
+#scene-area.drag-over {
+  box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.5);
+  border: 2px dashed var(--color-cyan);
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
